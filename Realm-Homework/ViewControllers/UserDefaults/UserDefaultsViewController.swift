@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  UserDefaultsViewController.swift
 //  Realm-Homework
 //
 //  Created by Андрей Лапин on 12.01.2021.
@@ -7,13 +7,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class UserDefaultsViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        self.view.backgroundColor = .lightGray
+        
     }
 
-
 }
-
