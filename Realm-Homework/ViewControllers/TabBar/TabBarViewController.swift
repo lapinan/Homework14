@@ -16,6 +16,9 @@ class TabBarViewController: UITabBarController {
 
         setConfigUserDefautlsVC()
         
+        tabBar.tintColor = .red
+        tabBar.backgroundColor = .black
+        
         setViewControllers([userDefautlsVC], animated: true)
         
     }
