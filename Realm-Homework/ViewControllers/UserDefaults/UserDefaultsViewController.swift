@@ -25,6 +25,8 @@ class UserDefaultsViewController: UIViewController {
         stack.axis = .vertical
         stack.distribution = .fillEqually
         stack.spacing = 10.0
+        stack.addArrangedSubview(nameLabel)
+        stack.addArrangedSubview(secondNameLabel)
         return stack
     }()
     let nameTextField: UITextField = {
@@ -33,6 +35,7 @@ class UserDefaultsViewController: UIViewController {
         tf.adjustsFontSizeToFitWidth = true
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.addTarget(self, action: #selector(nameTextFieldPressed), for: .editingChanged)
+        tf.placeholder = "Name"
         return tf
     }()
     let secondNameTextField: UITextField = {
@@ -40,6 +43,8 @@ class UserDefaultsViewController: UIViewController {
         tf.adjustsFontSizeToFitWidth = true
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.addTarget(self, action: #selector(secondNameTextFieldPressed), for: .editingChanged)
+        tf.borderStyle = .roundedRect
+        tf.placeholder = "Second name"
         return tf
     }()
     let nameLabel: UILabel = {
@@ -51,7 +56,7 @@ class UserDefaultsViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    let secondName: UILabel = {
+    let secondNameLabel: UILabel = {
         let label = UILabel()
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.1
@@ -65,6 +70,9 @@ class UserDefaultsViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .darkGray
         
+        view.addSubview(textFieldStackView)
+        view.addSubview(labelStackView)
+        
         setTextFieldStackViewConstraints()
         setLabelStackViewConstraints()
     }
@@ -75,15 +83,15 @@ class UserDefaultsViewController: UIViewController {
     //MARK: Constraints
     private func setTextFieldStackViewConstraints() {
         textFieldStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+        textFieldStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         textFieldStackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        textFieldStackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
-        textFieldStackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/10).isActive = true
+        labelStackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/10).isActive = true
     }
     private func setLabelStackViewConstraints() {
         labelStackView.topAnchor.constraint(equalTo: textFieldStackView.bottomAnchor, constant: 20).isActive = true
-        labelStackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
         labelStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        labelStackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/15).isActive = true
+        labelStackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        labelStackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/13).isActive = true
     }
     
     //MARK: Actinos
@@ -91,6 +99,6 @@ class UserDefaultsViewController: UIViewController {
         nameLabel.text = nameTextField.text!
     }
     @objc private func secondNameTextFieldPressed(_ sender: UITextField) {
-        secondName.text = secondNameTextField.text!
+        secondNameLabel.text = secondNameTextField.text!
     }
 }
