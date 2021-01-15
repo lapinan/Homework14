@@ -52,6 +52,7 @@ class UserDefaultsViewController: UIViewController {
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.1
         label.numberOfLines = 0
+        label.textColor = .red
         label.font = UIFont(name: "Chalkduster", size: 100)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -61,6 +62,7 @@ class UserDefaultsViewController: UIViewController {
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.1
         label.numberOfLines = 0
+        label.textColor = .red
         label.font = UIFont(name: "Chalkduster", size: 100)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -72,6 +74,9 @@ class UserDefaultsViewController: UIViewController {
         
         view.addSubview(textFieldStackView)
         view.addSubview(labelStackView)
+        
+        nameLabel.text = Persistance.shared.name
+        secondNameLabel.text = Persistance.shared.secondName
         
         setTextFieldStackViewConstraints()
         setLabelStackViewConstraints()
@@ -85,20 +90,22 @@ class UserDefaultsViewController: UIViewController {
         textFieldStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
         textFieldStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         textFieldStackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        labelStackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/10).isActive = true
+        textFieldStackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/10).isActive = true
     }
     private func setLabelStackViewConstraints() {
         labelStackView.topAnchor.constraint(equalTo: textFieldStackView.bottomAnchor, constant: 20).isActive = true
         labelStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         labelStackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        labelStackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/13).isActive = true
+        labelStackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/15).isActive = true
     }
     
     //MARK: Actinos
     @objc private func nameTextFieldPressed(_ sender: UITextField) {
         nameLabel.text = nameTextField.text!
+        Persistance.shared.name = nameTextField.text!
     }
     @objc private func secondNameTextFieldPressed(_ sender: UITextField) {
         secondNameLabel.text = secondNameTextField.text!
+        Persistance.shared.secondName = secondNameTextField.text!
     }
 }
