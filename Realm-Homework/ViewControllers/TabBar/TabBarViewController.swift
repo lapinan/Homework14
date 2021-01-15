@@ -10,7 +10,7 @@ import UIKit
 class TabBarViewController: UITabBarController {
     
     let userDefautlsVC = UserDefaultsViewController()
-    let realmToDoVC = UINavigationController(rootViewController: RealmToDoListViewController()) 
+    let realmToDoVC = RealmToDoListViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
