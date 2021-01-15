@@ -10,21 +10,26 @@ import UIKit
 class TabBarViewController: UITabBarController {
     
     let userDefautlsVC = UserDefaultsViewController()
+    let realmToDoVC = UINavigationController(rootViewController: RealmToDoListViewController()) 
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setConfigUserDefautlsVC()
+        setConfigRealmToDoVC()
         
         tabBar.tintColor = .red
         tabBar.barTintColor = .black
         
-        setViewControllers([userDefautlsVC], animated: true)
+        setViewControllers([userDefautlsVC, realmToDoVC], animated: true)
         
     }
     
     private func setConfigUserDefautlsVC() {
         userDefautlsVC.tabBarItem = UITabBarItem(title: "UserDefautls", image: nil, tag: 0)
+    }
+    private func setConfigRealmToDoVC() {
+        realmToDoVC.tabBarItem = UITabBarItem(title: "Realm", image: nil, tag: 0)
     }
 
 }
