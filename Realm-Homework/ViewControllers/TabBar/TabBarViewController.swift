@@ -11,7 +11,7 @@ class TabBarViewController: UITabBarController {
     
     let userDefautlsVC = UserDefaultsViewController()
     let realmToDoVC = RealmToDoListViewController()
-    let currentWeatherVC = CurrentWeatherViewController()
+    let currentWeatherVC = UINavigationController(rootViewController: CurrentWeatherViewController())
 
     override func viewDidLoad() {
         super.viewDidLoad()

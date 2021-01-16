@@ -46,6 +46,7 @@ class CurrentWeatherViewController: UIViewController {
         view.addSubview(currentTempLabel)
         view.addSubview(shadowButtonView)
         
+        getCurrentTempFromUserDefaults()
         getCurrentTemp()
         
         //constraints
@@ -56,7 +57,11 @@ class CurrentWeatherViewController: UIViewController {
     private func getCurrentTemp() {
         Network.shared.getCurrentWeather { temp in
             self.currentTempLabel.text = "\(temp)"
+            Persistance.shared.currentTemp = "\(temp)"
         }
+    }
+    private func getCurrentTempFromUserDefaults() {
+        self.currentTempLabel.text = Persistance.shared.currentTemp
     }
     
     //MARK: Constraints

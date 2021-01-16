@@ -12,7 +12,7 @@ class Persistance {
     static let shared = Persistance()
     
     enum keyUserDefautls: String {
-        case name, secondName
+        case name, secondName, currentTemp
     }
     
     var name: String {
@@ -38,6 +38,18 @@ class Persistance {
                 return secondName
             }
             return "" 
+        }
+    }
+    var currentTemp: String {
+        set {
+            let key = keyUserDefautls.secondName.rawValue
+            UserDefaults.standard.set(newValue, forKey: key)
+        }
+        get {
+            if let temp = UserDefaults.standard.string(forKey: keyUserDefautls.currentTemp.rawValue) {
+                return temp
+            }
+            return ""
         }
     }
     
