@@ -10,7 +10,7 @@ import UIKit
 class TabBarViewController: UITabBarController {
     
     let userDefautlsVC = UserDefaultsViewController()
-    let realmToDoVC = RealmToDoListViewController()
+    let realmToDoVC = UINavigationController(rootViewController: RealmToDoListViewController()) 
     let currentWeatherVC = UINavigationController(rootViewController: CurrentWeatherViewController())
 
     override func viewDidLoad() {
@@ -23,7 +23,7 @@ class TabBarViewController: UITabBarController {
         tabBar.tintColor = .red
         tabBar.barTintColor = .black
         
-        setViewControllers([userDefautlsVC, realmToDoVC, currentWeatherVC], animated: true)
+        setViewControllers([currentWeatherVC, userDefautlsVC, realmToDoVC], animated: true)
         
     }
     

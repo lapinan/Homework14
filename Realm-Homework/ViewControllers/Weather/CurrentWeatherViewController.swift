@@ -87,6 +87,6 @@ class CurrentWeatherViewController: UIViewController {
     
     //MARK: Actions
     @objc private func goForecastButton(_ sender: UIButton) {
-        
+        navigationController?.pushViewController(ForecastViewController(), animated: true)
     }
 }

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD04EBD725B36B2600038E91 /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD04EBD625B36B2600038E91 /* ForecastViewController.swift */; };
+		AD04EBDA25B36EF600038E91 /* ForecastWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD04EBD925B36EF600038E91 /* ForecastWeatherModel.swift */; };
+		AD04EBDD25B3762200038E91 /* ForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD04EBDC25B3762200038E91 /* ForecastTableViewCell.swift */; };
 		AD218AED25B2D4C6007A68B7 /* CurrentWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD218AEC25B2D4C6007A68B7 /* CurrentWeatherModel.swift */; };
 		AD218AF125B2DCD6007A68B7 /* GetNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD218AF025B2DCD6007A68B7 /* GetNetwork.swift */; };
 		AD218AF925B2E0BF007A68B7 /* CurrentWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD218AF825B2E0BF007A68B7 /* CurrentWeatherViewController.swift */; };
@@ -23,6 +26,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AD04EBD625B36B2600038E91 /* ForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
+		AD04EBD925B36EF600038E91 /* ForecastWeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastWeatherModel.swift; sourceTree = "<group>"; };
+		AD04EBDC25B3762200038E91 /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTableViewCell.swift; sourceTree = "<group>"; };
 		AD218AEC25B2D4C6007A68B7 /* CurrentWeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherModel.swift; sourceTree = "<group>"; };
 		AD218AF025B2DCD6007A68B7 /* GetNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNetwork.swift; sourceTree = "<group>"; };
 		AD218AF825B2E0BF007A68B7 /* CurrentWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +62,7 @@
 			children = (
 				AD218AEC25B2D4C6007A68B7 /* CurrentWeatherModel.swift */,
 				AD218AF025B2DCD6007A68B7 /* GetNetwork.swift */,
+				AD04EBD925B36EF600038E91 /* ForecastWeatherModel.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -64,6 +71,8 @@
 			isa = PBXGroup;
 			children = (
 				AD218AF825B2E0BF007A68B7 /* CurrentWeatherViewController.swift */,
+				AD04EBD625B36B2600038E91 /* ForecastViewController.swift */,
+				AD04EBDC25B3762200038E91 /* ForecastTableViewCell.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -209,9 +218,12 @@
 				AD4B8DC125B2286F00CF9AEB /* RealmToDoTableViewCell.swift in Sources */,
 				AD4B8DB725B1FD4E00CF9AEB /* UserDefaultsViewController.swift in Sources */,
 				AD4B8DBA25B21D3A00CF9AEB /* UserDefaults.swift in Sources */,
+				AD04EBDD25B3762200038E91 /* ForecastTableViewCell.swift in Sources */,
 				AD41E6A425AE2411006DDDEF /* SceneDelegate.swift in Sources */,
+				AD04EBD725B36B2600038E91 /* ForecastViewController.swift in Sources */,
 				AD41E6D125AE2700006DDDEF /* TabBarViewController.swift in Sources */,
 				AD218AF925B2E0BF007A68B7 /* CurrentWeatherViewController.swift in Sources */,
+				AD04EBDA25B36EF600038E91 /* ForecastWeatherModel.swift in Sources */,
 				AD4B8DBE25B2226600CF9AEB /* RealmToDoListViewController.swift in Sources */,
 				AD218AF125B2DCD6007A68B7 /* GetNetwork.swift in Sources */,
 				AD41E6AC25AE2411006DDDEF /* Realm_Homework.xcdatamodeld in Sources */,

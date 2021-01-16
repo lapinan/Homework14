@@ -29,4 +29,21 @@ class Network {
         }
         task.resume()
     }
+    func getForecast() {
+        let url = URL(string: "api.openweathermap.org/data/2.5/forecast?q=Moscow&appid=600eabbd67b0d53a6908f8b67898b8c0")!
+        let request = URLRequest(url: url)
+        let _ = URLSession.shared.dataTask(with: request) { data, _, _ in
+            guard let data = data else { return }
+            do {
+                let json = try JSONDecoder().decode(ForecastWeatherModel.self, from: data)
+                var temps: [Int]
+                for el in json.list {
+                    print(el)
+                }
+            }catch(let error) {
+                print("ERROR----------------")
+                print(error)
+            }
+        }
+    }
 }
