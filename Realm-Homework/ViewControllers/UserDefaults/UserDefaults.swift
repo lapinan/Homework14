@@ -42,7 +42,7 @@ class Persistance {
     }
     var currentTemp: String {
         set {
-            let key = keyUserDefautls.secondName.rawValue
+            let key = keyUserDefautls.currentTemp.rawValue
             UserDefaults.standard.set(newValue, forKey: key)
         }
         get {

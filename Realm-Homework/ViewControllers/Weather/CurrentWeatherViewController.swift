@@ -49,6 +49,8 @@ class CurrentWeatherViewController: UIViewController {
         getCurrentTempFromUserDefaults()
         getCurrentTemp()
         
+        self.title = "Current weather"
+        
         //constraints
         setShadowButtonViewConstraints()
         setCurrentTempLabelConstraints()

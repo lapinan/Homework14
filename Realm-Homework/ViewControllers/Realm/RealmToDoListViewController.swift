@@ -38,7 +38,7 @@ class RealmToDoListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "RealmToDoListViewControllerCell")
+        tableView.register(RealmToDoTableViewCell.self, forCellReuseIdentifier: "RealmToDoListViewControllerCell")
     }
     
     private func showSaveAlert() {
