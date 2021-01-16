@@ -24,6 +24,8 @@ class RealmToDoListViewController: UIViewController {
         
         view.addSubview(tableView)
         
+        tableView.rowHeight = UIScreen.main.bounds.size.width / 20
+        
         setConfigTableView()
     }
     
@@ -37,6 +39,24 @@ class RealmToDoListViewController: UIViewController {
         tableView.dataSource = self
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "RealmToDoListViewControllerCell")
+    }
+    
+    private func showSaveAlert() {
+        let alertController = UIAlertController(title: "Save", message: "Save net task", preferredStyle: .alert)
+        
+        let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
+            guard let newTask = alertController.textFields?.first?.text?.trimmingCharacters(in: .whitespaces) else { return }
+            if newTask != "" {
+                self.tasks.insert(newTask, at: 0)
+                self.tableView.reloadData()
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        
+        alertController.addTextField { _ in }
+        alertController.addAction(cancelAction)
+        alertController.addAction(saveAction)
+        present(alertController, animated: true, completion: nil)
     }
     
 }

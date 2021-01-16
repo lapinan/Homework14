@@ -11,17 +11,19 @@ class TabBarViewController: UITabBarController {
     
     let userDefautlsVC = UserDefaultsViewController()
     let realmToDoVC = RealmToDoListViewController()
+    let currentWeatherVC = CurrentWeatherViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setConfigUserDefautlsVC()
         setConfigRealmToDoVC()
+        setConfigWeatherVC()
         
         tabBar.tintColor = .red
         tabBar.barTintColor = .black
         
-        setViewControllers([userDefautlsVC, realmToDoVC], animated: true)
+        setViewControllers([userDefautlsVC, realmToDoVC, currentWeatherVC], animated: true)
         
     }
     
@@ -29,7 +31,10 @@ class TabBarViewController: UITabBarController {
         userDefautlsVC.tabBarItem = UITabBarItem(title: "UserDefautls", image: nil, tag: 0)
     }
     private func setConfigRealmToDoVC() {
-        realmToDoVC.tabBarItem = UITabBarItem(title: "Realm", image: nil, tag: 0)
+        realmToDoVC.tabBarItem = UITabBarItem(title: "Realm", image: nil, tag: 1)
+    }
+    private func setConfigWeatherVC() {
+        currentWeatherVC.tabBarItem = UITabBarItem(title: "Weahter", image: nil, tag: 2)
     }
 
 }

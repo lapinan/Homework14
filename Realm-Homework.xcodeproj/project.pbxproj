@@ -7,16 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD218AED25B2D4C6007A68B7 /* CurrentWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD218AEC25B2D4C6007A68B7 /* CurrentWeatherModel.swift */; };
+		AD218AF125B2DCD6007A68B7 /* GetNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD218AF025B2DCD6007A68B7 /* GetNetwork.swift */; };
+		AD218AF925B2E0BF007A68B7 /* CurrentWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD218AF825B2E0BF007A68B7 /* CurrentWeatherViewController.swift */; };
 		AD41E6A225AE2411006DDDEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD41E6A125AE2411006DDDEF /* AppDelegate.swift */; };
 		AD41E6A425AE2411006DDDEF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD41E6A325AE2411006DDDEF /* SceneDelegate.swift */; };
 		AD41E6AC25AE2411006DDDEF /* Realm_Homework.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AD41E6AA25AE2411006DDDEF /* Realm_Homework.xcdatamodeld */; };
 		AD41E6AE25AE2416006DDDEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD41E6AD25AE2416006DDDEF /* Assets.xcassets */; };
 		AD41E6B125AE2416006DDDEF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD41E6AF25AE2416006DDDEF /* LaunchScreen.storyboard */; };
-		AD41E6C425AE254B006DDDEF /* UserDefaultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD41E6C325AE254B006DDDEF /* UserDefaultsViewController.swift */; };
 		AD41E6D125AE2700006DDDEF /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD41E6D025AE2700006DDDEF /* TabBarViewController.swift */; };
+		AD4B8DB725B1FD4E00CF9AEB /* UserDefaultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4B8DB625B1FD4E00CF9AEB /* UserDefaultsViewController.swift */; };
+		AD4B8DBA25B21D3A00CF9AEB /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4B8DB925B21D3A00CF9AEB /* UserDefaults.swift */; };
+		AD4B8DBE25B2226600CF9AEB /* RealmToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4B8DBD25B2226600CF9AEB /* RealmToDoListViewController.swift */; };
+		AD4B8DC125B2286F00CF9AEB /* RealmToDoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4B8DC025B2286F00CF9AEB /* RealmToDoTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AD218AEC25B2D4C6007A68B7 /* CurrentWeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherModel.swift; sourceTree = "<group>"; };
+		AD218AF025B2DCD6007A68B7 /* GetNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNetwork.swift; sourceTree = "<group>"; };
+		AD218AF825B2E0BF007A68B7 /* CurrentWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherViewController.swift; sourceTree = "<group>"; };
 		AD41E69E25AE2411006DDDEF /* Realm-Homework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Realm-Homework.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD41E6A125AE2411006DDDEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD41E6A325AE2411006DDDEF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,8 +33,11 @@
 		AD41E6AD25AE2416006DDDEF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD41E6B025AE2416006DDDEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD41E6B225AE2416006DDDEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AD41E6C325AE254B006DDDEF /* UserDefaultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsViewController.swift; sourceTree = "<group>"; };
 		AD41E6D025AE2700006DDDEF /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		AD4B8DB625B1FD4E00CF9AEB /* UserDefaultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsViewController.swift; sourceTree = "<group>"; };
+		AD4B8DB925B21D3A00CF9AEB /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		AD4B8DBD25B2226600CF9AEB /* RealmToDoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmToDoListViewController.swift; sourceTree = "<group>"; };
+		AD4B8DC025B2286F00CF9AEB /* RealmToDoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmToDoTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +51,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AD218AEB25B2D4B0007A68B7 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				AD218AEC25B2D4C6007A68B7 /* CurrentWeatherModel.swift */,
+				AD218AF025B2DCD6007A68B7 /* GetNetwork.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		AD218AF725B2E0B0007A68B7 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				AD218AF825B2E0BF007A68B7 /* CurrentWeatherViewController.swift */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
 		AD41E69525AE2411006DDDEF = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +101,9 @@
 		AD41E6BC25AE24F4006DDDEF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				AD218AF725B2E0B0007A68B7 /* Weather */,
+				AD218AEB25B2D4B0007A68B7 /* Network */,
+				AD4B8DBC25B2225200CF9AEB /* Realm */,
 				AD41E6C225AE2533006DDDEF /* UserDefaults */,
 				AD41E6BD25AE24FD006DDDEF /* TabBar */,
 			);
@@ -89,9 +121,19 @@
 		AD41E6C225AE2533006DDDEF /* UserDefaults */ = {
 			isa = PBXGroup;
 			children = (
-				AD41E6C325AE254B006DDDEF /* UserDefaultsViewController.swift */,
+				AD4B8DB625B1FD4E00CF9AEB /* UserDefaultsViewController.swift */,
+				AD4B8DB925B21D3A00CF9AEB /* UserDefaults.swift */,
 			);
 			path = UserDefaults;
+			sourceTree = "<group>";
+		};
+		AD4B8DBC25B2225200CF9AEB /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				AD4B8DBD25B2226600CF9AEB /* RealmToDoListViewController.swift */,
+				AD4B8DC025B2286F00CF9AEB /* RealmToDoTableViewCell.swift */,
+			);
+			path = Realm;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,11 +205,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD41E6C425AE254B006DDDEF /* UserDefaultsViewController.swift in Sources */,
 				AD41E6A225AE2411006DDDEF /* AppDelegate.swift in Sources */,
+				AD4B8DC125B2286F00CF9AEB /* RealmToDoTableViewCell.swift in Sources */,
+				AD4B8DB725B1FD4E00CF9AEB /* UserDefaultsViewController.swift in Sources */,
+				AD4B8DBA25B21D3A00CF9AEB /* UserDefaults.swift in Sources */,
 				AD41E6A425AE2411006DDDEF /* SceneDelegate.swift in Sources */,
 				AD41E6D125AE2700006DDDEF /* TabBarViewController.swift in Sources */,
+				AD218AF925B2E0BF007A68B7 /* CurrentWeatherViewController.swift in Sources */,
+				AD4B8DBE25B2226600CF9AEB /* RealmToDoListViewController.swift in Sources */,
+				AD218AF125B2DCD6007A68B7 /* GetNetwork.swift in Sources */,
 				AD41E6AC25AE2411006DDDEF /* Realm_Homework.xcdatamodeld in Sources */,
+				AD218AED25B2D4C6007A68B7 /* CurrentWeatherModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
