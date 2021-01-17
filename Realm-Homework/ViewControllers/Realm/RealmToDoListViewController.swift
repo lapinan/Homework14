@@ -6,16 +6,7 @@
 //
 
 import UIKit
-
-class Task {
-    let title: String!
-    var isCheckBox: Bool!
-    
-    init(text: String, isON: Bool) {
-        self.title = text
-        self.isCheckBox = isON
-    }
-}
+import RealmSwift
 
 class RealmToDoListViewController: UIViewController {
     
@@ -26,11 +17,9 @@ class RealmToDoListViewController: UIViewController {
         return table
     }()
     
-    var tasks: [Task] = [
-        Task(text: "Call", isON: true),
-        Task(text: "Get push  token", isON: false),
-        Task(text: "Repeat me after my ask", isON: false)
-    ]
+    var tasks: [TaskRealm] = []
+    
+    let realm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,8 +29,18 @@ class RealmToDoListViewController: UIViewController {
         
         tableView.rowHeight = 60
         
+        showAllTasks()
+        
         setConfigTableView()
         setNavBar()
+    }
+    
+    private func showAllTasks() {
+        let allTasks = realm.objects(TaskRealm.self)
+        for task in allTasks {
+            tasks.insert(task, at: 0)
+        }
+        tableView.reloadData()
     }
     
     private func setConfigTableView() {
@@ -69,7 +68,14 @@ class RealmToDoListViewController: UIViewController {
             guard let nameTask = alertController.textFields?.first?.text else { return }
             let taskTitle = nameTask.trimmingCharacters(in: .whitespaces)
             if taskTitle != "" {
-                let task = Task(text: taskTitle, isON: false)
+                let task = TaskRealm()
+                task.title = taskTitle
+                task.isCheckBox = false
+                
+                try! self.realm.write {
+                    self.realm.add(task)
+                }
+                
                 self.tasks.insert(task, at: 0)
                 self.tableView.reloadData()
             }
@@ -102,8 +108,17 @@ extension RealmToDoListViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let updateTask = realm.objects(TaskRealm.self).filter("title == \(tasks[indexPath.row].title)").first!
+        updateTask.isCheckBox = !updateTask.isCheckBox
+        
         tasks[indexPath.row].isCheckBox = !tasks[indexPath.row].isCheckBox
+        
         tableView.reloadData()
+        
+        
+        // tasks[indexPath.row].isCheckBox = !tasks[indexPath.row].isCheckBox
+        // tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
