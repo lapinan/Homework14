@@ -39,7 +39,7 @@ class ForecastViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.register(ForecastTableViewCell.self, forCellReuseIdentifier: "ForecastCell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ForecastCell")
     }
 
 }

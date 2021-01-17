@@ -28,6 +28,10 @@ class RealmToDoTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        addSubview(title)
+        addSubview(checkBox)
+        
         setTitleConstraints()
         setCheckBoxConstraints()
     }

@@ -49,7 +49,8 @@ class CurrentWeatherViewController: UIViewController {
         getCurrentTempFromUserDefaults()
         getCurrentTemp()
         
-        self.title = "Current weather"
+    
+        setupNavBar()
         
         //constraints
         setShadowButtonViewConstraints()
@@ -64,6 +65,13 @@ class CurrentWeatherViewController: UIViewController {
     }
     private func getCurrentTempFromUserDefaults() {
         self.currentTempLabel.text = Persistance.shared.currentTemp
+    }
+    
+    private func setupNavBar() {
+        title = "CurrentWeather"
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.red]
+
     }
     
     //MARK: Constraints

@@ -24,7 +24,7 @@ class RealmToDoListViewController: UIViewController {
         
         view.addSubview(tableView)
         
-        tableView.rowHeight = UIScreen.main.bounds.size.width / 20
+        tableView.rowHeight = UIScreen.main.bounds.size.width / 10
         
         setConfigTableView()
     }
@@ -69,7 +69,12 @@ extension RealmToDoListViewController: UITableViewDelegate, UITableViewDataSourc
         let cell = tableView.dequeueReusableCell(withIdentifier: "RealmToDoListViewControllerCell") as! RealmToDoTableViewCell
 
         cell.title.text = tasks[indexPath.row]
+        cell.backgroundColor = .darkGray
 
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
