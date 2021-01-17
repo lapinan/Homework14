@@ -11,7 +11,7 @@ class RealmToDoTableViewCell: UITableViewCell {
     
     var checkBox: UISwitch = {
         let checkbox = UISwitch()
-        checkbox.isOn = true
+        checkbox.isOn = false
         checkbox.onTintColor = .red
         checkbox.translatesAutoresizingMaskIntoConstraints = false
         return checkbox
@@ -19,9 +19,9 @@ class RealmToDoTableViewCell: UITableViewCell {
     var title: UILabel = {
         let label = UILabel()
         label.textColor = .red
-        label.font = UIFont(name: "Chalkduster", size: 100)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.1
         label.numberOfLines = 0
         return label
     }()
@@ -47,9 +47,10 @@ class RealmToDoTableViewCell: UITableViewCell {
         title.rightAnchor.constraint(equalTo: checkBox.leftAnchor, constant: -20).isActive = true
     }
     private func setCheckBoxConstraints() {
-        checkBox.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
-        checkBox.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        checkBox.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        checkBox.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
+        checkBox.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
+        checkBox.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 10).isActive = true
+        checkBox.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1/5).isActive = true
     }
     
 }

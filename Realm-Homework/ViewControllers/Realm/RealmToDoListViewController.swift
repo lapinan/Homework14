@@ -7,6 +7,16 @@
 
 import UIKit
 
+class Task {
+    let title: String!
+    var isCheckBox: Bool!
+    
+    init(text: String, isON: Bool) {
+        self.title = text
+        self.isCheckBox = isON
+    }
+}
+
 class RealmToDoListViewController: UIViewController {
     
     let tableView: UITableView = {
@@ -16,7 +26,11 @@ class RealmToDoListViewController: UIViewController {
         return table
     }()
     
-    var tasks: [String] = ["eat burger", "bux bread", "check car"]
+    var tasks: [Task] = [
+        Task(text: "Call", isON: true),
+        Task(text: "Get push  token", isON: false),
+        Task(text: "Repeat me after my ask", isON: false)
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +38,10 @@ class RealmToDoListViewController: UIViewController {
         
         view.addSubview(tableView)
         
-        tableView.rowHeight = UIScreen.main.bounds.size.width / 10
+        tableView.rowHeight = 60
         
         setConfigTableView()
+        setNavBar()
     }
     
     private func setConfigTableView() {
@@ -40,25 +55,35 @@ class RealmToDoListViewController: UIViewController {
         
         tableView.register(RealmToDoTableViewCell.self, forCellReuseIdentifier: "RealmToDoListViewControllerCell")
     }
+    private func setNavBar() {
+        navigationController?.navigationBar.barTintColor = .black
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.red]
+        title = "ToDoList"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTask))
+        navigationItem.rightBarButtonItem?.tintColor = .red
+    }
     
     private func showSaveAlert() {
-        let alertController = UIAlertController(title: "Save", message: "Save net task", preferredStyle: .alert)
-        
+        let alertController = UIAlertController(title: "Save", message: "Save new task", preferredStyle: .alert)
         let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
-            guard let newTask = alertController.textFields?.first?.text?.trimmingCharacters(in: .whitespaces) else { return }
-            if newTask != "" {
-                self.tasks.insert(newTask, at: 0)
+            guard let nameTask = alertController.textFields?.first?.text else { return }
+            let taskTitle = nameTask.trimmingCharacters(in: .whitespaces)
+            if taskTitle != "" {
+                let task = Task(text: taskTitle, isON: false)
+                self.tasks.insert(task, at: 0)
                 self.tableView.reloadData()
             }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-        
         alertController.addTextField { _ in }
         alertController.addAction(cancelAction)
         alertController.addAction(saveAction)
         present(alertController, animated: true, completion: nil)
     }
     
+    @objc private func addTask(_ sender: UIBarButtonItem) {
+        showSaveAlert()
+    }
 }
 
 extension RealmToDoListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -67,8 +92,9 @@ extension RealmToDoListViewController: UITableViewDelegate, UITableViewDataSourc
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RealmToDoListViewControllerCell") as! RealmToDoTableViewCell
-
-        cell.title.text = tasks[indexPath.row]
+        let task = tasks[indexPath.row]
+        cell.checkBox.isOn = task.isCheckBox
+        cell.title.text = task.title
         cell.backgroundColor = .darkGray
 
         return cell
@@ -76,5 +102,19 @@ extension RealmToDoListViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        tasks[indexPath.row].isCheckBox = !tasks[indexPath.row].isCheckBox
+        tableView.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tasks.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
+            
+        }
     }
 }

@@ -23,7 +23,7 @@ class TabBarViewController: UITabBarController {
         tabBar.tintColor = .red
         tabBar.barTintColor = .black
         
-        setViewControllers([currentWeatherVC, userDefautlsVC, realmToDoVC], animated: true)
+        setViewControllers([realmToDoVC, currentWeatherVC, userDefautlsVC], animated: true)
         
     }
     
