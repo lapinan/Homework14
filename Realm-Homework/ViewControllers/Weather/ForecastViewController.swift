@@ -25,7 +25,8 @@ class ForecastViewController: UIViewController {
         view.addSubview(tableView)
         
         setupTableView()
-   
+        
+        getForecast()
     }
     
     private func getForecast() {

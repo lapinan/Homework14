@@ -22,7 +22,8 @@ struct ForecastWeatherModelSubList: Codable {
     let wind: ForecastWeatherModelSubWind
     let visibility: Int
     let pop: Float
-    let snow: ForecastWeatherModelSubSnow
+    let snow: ForecastWeatherModelSubSnow?
+    let rain: ForecastWeatherModelSubSnow?
     let sys: ForecastWeatherModelSubSys
     let dt_txt: String
 }
