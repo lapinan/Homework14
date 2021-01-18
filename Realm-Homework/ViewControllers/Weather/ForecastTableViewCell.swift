@@ -12,8 +12,11 @@ class ForecastTableViewCell: UITableViewCell {
     let titleTempLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = label.font.withSize(100)
+        label.font = UIFont(name: "Chalkduster", size: 100)
         label.textAlignment = .center
+        label.textColor = .red
+        label.backgroundColor = .darkGray
+        label.numberOfLines = 0
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.1
         return label

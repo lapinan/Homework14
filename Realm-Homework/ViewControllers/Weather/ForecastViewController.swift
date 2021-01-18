@@ -46,7 +46,9 @@ class ForecastViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ForecastCell")
+        tableView.backgroundColor = .darkGray
+        
+        tableView.register(ForecastTableViewCell.self, forCellReuseIdentifier: "ForecastCell")
         
         tableView.rowHeight = UIScreen.main.bounds.height / 10
         
@@ -61,6 +63,7 @@ extension ForecastViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ForecastCell", for: indexPath) as! ForecastTableViewCell
         
         cell.titleTempLabel.text = "\(temps[indexPath.row])"
+        cell.backgroundColor = .darkGray
         
         return cell
     }
