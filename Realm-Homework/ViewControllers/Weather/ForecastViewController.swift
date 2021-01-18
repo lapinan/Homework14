@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ForecastViewController: UIViewController {
     
@@ -21,9 +22,17 @@ class ForecastViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .darkGray
+        view.addSubview(tableView)
         
         setupTableView()
    
+    }
+    
+    private func getForecast() {
+        Network.shared.getForecast { temps in
+            self.temps = temps
+            self.tableView.reloadData()
+        }
     }
    
     
