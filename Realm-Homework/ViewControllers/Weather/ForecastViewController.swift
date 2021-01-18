@@ -12,6 +12,8 @@ class ForecastViewController: UIViewController {
     
     var temps: [Int] = []
     
+    let realm = try! Realm()
+    
     let tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -24,6 +26,13 @@ class ForecastViewController: UIViewController {
         view.backgroundColor = .darkGray
         view.addSubview(tableView)
         
+        if let showForecast = realm.objects(ForecastRealm.self).first {
+            for t in showForecast.temps {
+                self.temps.append(t)
+            }
+            tableView.reloadData()
+        }
+        
         setupTableView()
         
         getForecast()
@@ -32,6 +41,22 @@ class ForecastViewController: UIViewController {
     private func getForecast() {
         Network.shared.getForecast { temps in
             self.temps = temps
+            
+            let allForecasts = self.realm.objects(ForecastRealm.self)
+            for forecast in allForecasts {
+                try! self.realm.write {
+                    self.realm.delete(forecast)
+                }
+            }
+            
+            let forecast = ForecastRealm()
+            for t in temps {
+                forecast.temps.append(t)
+            }
+            try! self.realm.write {
+                self.realm.add(forecast)
+            }
+            
             self.tableView.reloadData()
         }
     }
