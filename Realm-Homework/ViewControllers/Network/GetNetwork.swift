@@ -29,21 +29,26 @@ class Network {
         }
         task.resume()
     }
-    func getForecast() {
+    func getForecast(completion: @escaping ([Int]) -> Void) {
         let url = URL(string: "api.openweathermap.org/data/2.5/forecast?q=Moscow&appid=600eabbd67b0d53a6908f8b67898b8c0")!
         let request = URLRequest(url: url)
         let _ = URLSession.shared.dataTask(with: request) { data, _, _ in
             guard let data = data else { return }
             do {
                 let json = try JSONDecoder().decode(ForecastWeatherModel.self, from: data)
-                var temps: [Int]
-                for el in json.list {
-                    print(el)
+                
+                var tempsArray: [Int] = []
+                for list in json.list {
+                    let temp = Int(round(list.main.temp - 273.15))
+                    tempsArray.append(temp)
+                }
+                DispatchQueue.main.async {
+                    completion(tempsArray)
                 }
             }catch(let error) {
-                print("ERROR----------------")
+                print("ERROR------")
                 print(error)
             }
-        }
+        }.resume()
     }
 }

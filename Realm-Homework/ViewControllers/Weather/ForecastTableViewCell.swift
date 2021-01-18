@@ -2,7 +2,7 @@
 //  ForecastTableViewCell.swift
 //  Realm-Homework
 //
-//  Created by Андрей Лапин on 16.01.2021.
+//  Created by Андрей Лапин on 17.01.2021.
 //
 
 import UIKit
