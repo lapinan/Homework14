@@ -63,10 +63,10 @@ struct ForecastWeatherModelSubWind: Codable {
     let deg: Int
 }
 struct ForecastWeatherModelSubSnow: Codable {
-    let the3h: Float
+    let the3H: Double
     
     enum CodingKeys: String, CodingKey {
-        case the3h = "3h"
+        case the3H = "3h"
     }
 }
 struct ForecastWeatherModelSubSys: Codable {
