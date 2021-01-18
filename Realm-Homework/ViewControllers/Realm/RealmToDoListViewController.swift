@@ -109,13 +109,13 @@ extension RealmToDoListViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let updateTask = realm.objects(TaskRealm.self).filter("title == \(tasks[indexPath.row].title)").first!
-        updateTask.isCheckBox = !updateTask.isCheckBox
-        
-        tasks[indexPath.row].isCheckBox = !tasks[indexPath.row].isCheckBox
+
+        try! realm.write {
+            let editTask = tasks[indexPath.row]
+            editTask.isCheckBox = !editTask.isCheckBox
+        }
         
         tableView.reloadData()
-        
         
         // tasks[indexPath.row].isCheckBox = !tasks[indexPath.row].isCheckBox
         // tableView.reloadData()
@@ -126,6 +126,14 @@ extension RealmToDoListViewController: UITableViewDelegate, UITableViewDataSourc
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            
+            let realmDeleteTask = realm.objects(TaskRealm.self).filter { $0.title == self.tasks[indexPath.row].title }.first
+            if let deleteTask = realmDeleteTask {
+                try! self.realm.write {
+                    self.realm.delete(deleteTask)
+                }
+            }
+            
             tasks.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {

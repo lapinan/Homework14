@@ -12,3 +12,7 @@ class TaskRealm: Object {
     @objc dynamic var title = ""
     @objc dynamic var isCheckBox = false
 }
+
+class ForecastRealm: Object {
+    var temps = List<Int>()
+}

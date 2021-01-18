@@ -71,6 +71,7 @@ class CurrentWeatherViewController: UIViewController {
         title = "CurrentWeather"
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.red]
+        navigationController?.navigationBar.barTintColor = .black 
 
     }
     

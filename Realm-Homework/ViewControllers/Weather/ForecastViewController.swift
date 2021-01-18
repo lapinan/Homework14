@@ -23,12 +23,9 @@ class ForecastViewController: UIViewController {
         view.backgroundColor = .darkGray
         
         setupTableView()
-        getForecast()
+   
     }
-    
-    private func getForecast() {
-        Network.shared.getForecast()
-    }
+   
     
     private func setupTableView() {
         tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -40,6 +37,9 @@ class ForecastViewController: UIViewController {
         tableView.delegate = self
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ForecastCell")
+        
+        tableView.rowHeight = UIScreen.main.bounds.height / 10
+        
     }
 
 }
@@ -49,10 +49,14 @@ extension ForecastViewController: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ForecastCell", for: indexPath) as! ForecastTableViewCell
-        cell.textLabel?.text = ""
+        
+        cell.titleTempLabel.text = "\(temps[indexPath.row])"
+        
         return cell
     }
 }
 extension ForecastViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }

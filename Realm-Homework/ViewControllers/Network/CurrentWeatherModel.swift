@@ -14,7 +14,6 @@ struct CurrentWeatherModel: Codable {
     let main: CurrentWeatherSubMain
     let visibility: Int
     let wind: CurrentWeatherSubWind
-    let snow: CurrentWeatherSubSnow
     let clouds: CurrentWeatherSubClouds
     let dt: Int
     let sys: CurrentWeatherSubSys
@@ -47,13 +46,6 @@ struct CurrentWeatherSubMain: Codable {
 }
 struct CurrentWeatherSubWind: Codable {
     let speed, deg: Int
-}
-struct CurrentWeatherSubSnow: Codable {
-    let the1h: Double
-    
-    enum CodingKeys: String, CodingKey {
-        case the1h = "1h"
-    }
 }
 struct CurrentWeatherSubClouds: Codable {
     let all: Int
