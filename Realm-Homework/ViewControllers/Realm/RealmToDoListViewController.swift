@@ -116,9 +116,6 @@ extension RealmToDoListViewController: UITableViewDelegate, UITableViewDataSourc
         }
         
         tableView.reloadData()
-        
-        // tasks[indexPath.row].isCheckBox = !tasks[indexPath.row].isCheckBox
-        // tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

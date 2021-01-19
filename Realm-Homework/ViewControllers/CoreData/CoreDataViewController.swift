@@ -7,6 +7,16 @@
 
 import UIKit
 
+class Task {
+    let nameTask: String!
+    var isCheckBox: Bool!
+    
+    init(name: String, isCheckBox: Bool) {
+        self.nameTask = name
+        self.isCheckBox = isCheckBox
+    }
+}
+
 class CoreDataViewController: UIViewController {
     
     let tableView: UITableView = {
@@ -16,7 +26,10 @@ class CoreDataViewController: UIViewController {
         return table
     }()
     
-    var tasks: [String] = []
+    var tasks: [Task] = [
+        Task(name: "Break", isCheckBox: true),
+        Task(name: "Help", isCheckBox: false)
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +64,9 @@ class CoreDataViewController: UIViewController {
             let newTask = alertController.textFields?.first?.text?.trimmingCharacters(in: .whitespaces)
             guard let nameTask = newTask else { return }
             if nameTask != "" {
-                self.tasks.insert(nameTask, at: 0)
+                let task = Task(name: nameTask, isCheckBox: false)
+                
+                self.tasks.insert(task, at: 0)
                 self.tableView.reloadData()
             }
         }
@@ -78,9 +93,27 @@ extension CoreDataViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CoreDataCell", for: indexPath) as! CoreDataTableViewCell
         
-        cell.nameTaskLabel.text = tasks[indexPath.row]
+        let model = tasks[indexPath.row]
+        
+        if model.isCheckBox {
+            cell.checkBox.backgroundColor = .red
+            cell.nameTaskLabel.text = model.nameTask
+            cell.backgroundColor = .darkGray
+            
+            return cell
+        }
+        
+        cell.nameTaskLabel.text = model.nameTask
+        cell.checkBox.backgroundColor = .darkGray
+        
         cell.backgroundColor = .darkGray
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tasks[indexPath.row].isCheckBox = !tasks[indexPath.row].isCheckBox
+        
+        tableView.reloadData()
     }
 }

@@ -25,7 +25,6 @@ class CoreDataTableViewCell: UITableViewCell {
         view.layer.borderColor = UIColor.black.cgColor
         view.backgroundColor = .darkGray
         view.layer.borderWidth = 2
-        view.layer.cornerRadius = view.frame.width / 2
         view.layer.masksToBounds = true
         return view
     }()
@@ -49,10 +48,14 @@ class CoreDataTableViewCell: UITableViewCell {
         nameTaskLabel.rightAnchor.constraint(equalTo: checkBox.leftAnchor, constant: -10).isActive = true
     }
     private func setCheckBoxConstraints() {
-        checkBox.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
+        checkBox.heightAnchor.constraint(equalToConstant: 22).isActive = true
         checkBox.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
-        checkBox.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
-        checkBox.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1/8).isActive = true
+        checkBox.widthAnchor.constraint(equalToConstant: 22).isActive = true
+        checkBox.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        
+        DispatchQueue.main.async {
+            self.checkBox.layer.cornerRadius = self.checkBox.frame.width / 2
+        }
     }
 
 }
