@@ -6,16 +6,7 @@
 //
 
 import UIKit
-
-class Task {
-    let nameTask: String!
-    var isCheckBox: Bool!
-    
-    init(name: String, isCheckBox: Bool) {
-        self.nameTask = name
-        self.isCheckBox = isCheckBox
-    }
-}
+import CoreData
 
 class CoreDataViewController: UIViewController {
     
@@ -26,16 +17,74 @@ class CoreDataViewController: UIViewController {
         return table
     }()
     
-    var tasks: [Task] = [
-        Task(name: "Break", isCheckBox: true),
-        Task(name: "Help", isCheckBox: false)
-    ]
+    var tasks: [TaskCoreData] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
         setConfigTableView()
         setConfigNavBar()
+        showTasksCoreData()
+    }
+    
+    private func showTasksCoreData() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest: NSFetchRequest<TaskCoreData> = TaskCoreData.fetchRequest()
+        
+        do {
+            tasks = try context.fetch(fetchRequest)
+        }catch let error {
+            print(error)
+        } 
+    }
+    
+    
+    private func deleteTask(_ objc: NSManagedObject) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        context.delete(objc)
+        
+        do {
+            try context.save()
+        }catch(let error) {
+            print(error)
+        }
+    }
+
+    private func updateTask(isCheck: Bool, objc: TaskCoreData) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TaskCoreData")
+        fetchRequest.predicate = NSPredicate(format: "nameTask = %@", objc.nameTask as! CVarArg)
+        
+        let fethcResult = try? context.fetch(fetchRequest) as? [TaskCoreData]
+        
+        fethcResult?.forEach { coredataTask in
+            coredataTask.isCheckBox = isCheck
+        }
+        try? context.save()
+    }
+    
+    private func saveCoreData(withTitle title: String, isCheckBox: Bool = false) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        guard let entity = NSEntityDescription.entity(forEntityName: "TaskCoreData", in: context) else { return }
+        
+        let taskObject = TaskCoreData(entity: entity, insertInto: context)
+        taskObject.nameTask = title
+        taskObject.isCheckBox = isCheckBox
+        
+        do {
+            try context.save()
+            self.tasks.insert(taskObject, at: 0)
+        }catch let error {
+            print(error)
+        }
     }
     
     private func setConfigTableView() {
@@ -64,9 +113,7 @@ class CoreDataViewController: UIViewController {
             let newTask = alertController.textFields?.first?.text?.trimmingCharacters(in: .whitespaces)
             guard let nameTask = newTask else { return }
             if nameTask != "" {
-                let task = Task(name: nameTask, isCheckBox: false)
-                
-                self.tasks.insert(task, at: 0)
+                self.saveCoreData(withTitle: nameTask)
                 self.tableView.reloadData()
             }
         }
@@ -114,6 +161,8 @@ extension CoreDataViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
+            self.deleteTask(tasks[indexPath.row])
+            
             self.tasks.remove(at: indexPath.row)
             
             self.tableView.deleteRows(at: [indexPath], with: .fade)
@@ -123,7 +172,11 @@ extension CoreDataViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tasks[indexPath.row].isCheckBox = !tasks[indexPath.row].isCheckBox
+        
+        let editTask = tasks[indexPath.row]
+        editTask.isCheckBox = !editTask.isCheckBox
+        
+        updateTask(isCheck: editTask.isCheckBox, objc: editTask)
         
         tableView.reloadData()
     }
